@@ -135,7 +135,10 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Transaction'
-
+        '401':
+          description: Unauthorized - User not authenticated
+        '500':
+          description: Internal Server Error
     post:
       security:
         - Bearer: []
@@ -162,7 +165,12 @@ paths:
           description: Transaction created successfully
           schema:
             $ref: '#/definitions/Transaction'
-
+        '400':
+          description: Bad Request - Invalid input data
+        '401':
+          description: Unauthorized - User not authenticated
+        '500':
+          description: Internal Server Error
   /user/transactions/{transactionId}:
     put:
       security:
@@ -194,8 +202,15 @@ paths:
         '200':
           description: Transaction updated successfully
           schema:
-            $ref: '#/definitions/Transaction' 
-
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Bad Request - Invalid input data
+        '401':
+          description: Unauthorized - User not authenticated
+        '404':
+          description: Transaction not found
+        '500':
+          description: Internal Server Error
     delete:
       security:
         - Bearer: []
@@ -219,6 +234,8 @@ paths:
       responses:
         '200':
           description: Transaction deleted successfully
+        '401':
+          description: Unauthorized - User not authenticated
         '404':
           description: Transaction not found
         '500':
